@@ -1,5 +1,5 @@
-import javax.swing.Action;
-
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,8 +17,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class gui extends Application{
     
@@ -49,8 +52,33 @@ public class gui extends Application{
     
     @Override
     public void start(Stage stage){
+
             BorderPane borderPane = new BorderPane();
             borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+
+            String content = "Ritche's Texts";
+            Text title = new Text();
+            title.setFont(Font.font("Impact", FontWeight.BOLD, 20));
+            title.setFill(Color.ORANGE);
+            title.setTextAlignment(TextAlignment.CENTER);
+
+            borderPane.setTop(title);
+         
+            Animation typingAnimation = new Transition(){
+                {
+                    setCycleDuration(Duration.millis(2000));
+                }
+            
+                protected void interpolate(double frac) {
+                    final int length = content.length();
+                    final int n = Math.round(length * (float) frac);
+                    title.setText(content.substring(0, n));
+                }
+            };
+
+            typingAnimation.play();
+
+
             VBox vBox = new VBox();
             vBox.setPadding(new Insets(10));
             for(int i = 0; i < 10; i++){
@@ -81,7 +109,7 @@ public class gui extends Application{
             //work in progress
             TextField t3 = makeTextField("Enter date and time");
 
-            
+
             Button b2 = makeButton("Send text");
 
             gridPane.add(t, 0, 0);
@@ -98,7 +126,7 @@ public class gui extends Application{
 
             borderPane.setBottom(gridPane);
 
-            stage.setScene(new Scene(borderPane, 500, 600));
+            stage.setScene(new Scene(borderPane, 500, 650));
             stage.setTitle("Fake Text App");
             stage.show();
     }
