@@ -1,3 +1,5 @@
+import javax.swing.Action;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -71,7 +73,6 @@ public class gui extends Application{
             gridPane.setAlignment(Pos.CENTER);
 
             TextField t = makeTextField("Enter message here");
-            //work in progress
             Button b = makeButton("Random Text");
             
             //work in progress
@@ -80,6 +81,7 @@ public class gui extends Application{
             //work in progress
             TextField t3 = makeTextField("Enter date and time");
 
+            
             Button b2 = makeButton("Send text");
 
             gridPane.add(t, 0, 0);
@@ -88,8 +90,11 @@ public class gui extends Application{
             gridPane.add(t3, 0, 2);
             gridPane.add(b2, 1, 3);
 
-            EventHandler<ActionEvent> obeserver = new UpdateHandler(vBox, t);
-            b2.setOnAction(obeserver);
+            EventHandler<ActionEvent> observer = new randomTextField(t);
+            b.setOnAction(observer);
+
+            EventHandler<ActionEvent> observer2 = new UpdateHandler(vBox, t);
+            b2.setOnAction(observer2);
 
             borderPane.setBottom(gridPane);
 
@@ -124,5 +129,21 @@ class UpdateHandler implements EventHandler<ActionEvent>{
             ((Label) v.getChildren().get(i)).setText(messages[i-1]);
             ((Label) v.getChildren().get(i)).setFont(new Font(20));
         }
+    }
+}
+
+class randomTextField implements EventHandler<ActionEvent>{
+    private TextField text;
+    private randomText r;
+
+    public randomTextField(TextField text){
+        this.text = text;
+        this.r = new randomText();
+    }
+
+    @Override
+    public void handle(ActionEvent arg0) {
+        // TODO Auto-generated method stub
+        text.setText(r.randomTString());
     }
 }
