@@ -105,6 +105,7 @@ public class gui extends Application{
             
             //work in progress
             TextField t2 = makeTextField("Enter name of receipient");
+            Button b3 = makeButton("Random recipient");
 
             //work in progress
             TextField t3 = makeTextField("Enter date and time");
@@ -115,6 +116,7 @@ public class gui extends Application{
             gridPane.add(t, 0, 0);
             gridPane.add(b, 1, 0);
             gridPane.add(t2, 0, 1);
+            gridPane.add(b3, 1, 1);
             gridPane.add(t3, 0, 2);
             gridPane.add(b2, 1, 3);
 
