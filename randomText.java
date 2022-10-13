@@ -11,6 +11,11 @@ public class randomText{
     private BufferedReader br = null; 
     private Random random = new Random();
 
+    public randomText()
+    {
+        this.file = new File("preset_text.txt");
+    }
+
     private int totallines(){
         int total = 0;
         try{
@@ -35,6 +40,12 @@ public class randomText{
             System.out.println("File not found");
         }
         return "";
+    }
+
+    public static void main(String[] args)
+    {
+        randomText rd = new randomText();
+        System.out.println(rd.randomTString());
     }
 
 }
