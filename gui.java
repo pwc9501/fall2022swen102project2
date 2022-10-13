@@ -128,7 +128,7 @@ public class gui extends Application{
 
             borderPane.setBottom(gridPane);
 
-            stage.setScene(new Scene(borderPane, 500, 650));
+            stage.setScene(new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE));
             stage.setTitle("Fake Text App");
             stage.show();
     }
