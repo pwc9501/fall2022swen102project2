@@ -1,3 +1,5 @@
+package Random;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,9 +9,15 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class randomText{
-    private File file = new File("preset_text.txt"); 
-    private BufferedReader br = null; 
-    private Random random = new Random();
+    private File file; 
+    private BufferedReader br; 
+    private Random random;
+
+    public randomText(){
+        this.file = new File("preset_text.txt");
+        this.br = null;
+        this.random = new Random();
+    }
 
     public randomText()
     {
