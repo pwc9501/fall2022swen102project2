@@ -22,6 +22,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import Random.randomText;
+
 
 public class gui extends Application{
     
