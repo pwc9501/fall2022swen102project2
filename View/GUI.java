@@ -27,7 +27,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class gui extends Application{
+public class GUI extends Application{
     
     private Button makeButton(String text){
         Button b = new Button(text);
