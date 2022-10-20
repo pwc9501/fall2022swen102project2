@@ -1,3 +1,5 @@
+
+import Random.randomText;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.application.Application;

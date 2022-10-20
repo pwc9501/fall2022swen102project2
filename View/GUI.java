@@ -95,7 +95,7 @@ public class GUI extends Application {
      
         Button btnScheduleSend = new Button("Schedule Send");
         btnSendNow.setMaxWidth(Double.MAX_VALUE);
-        btnSendNow.setBackground(Background.fill(Color.BLUE));
+        btnSendNow.setBackground(new Background(new BackgroundFill(Color.BLUE, new CornerRadii(20), Insets.EMPTY)));
         btnSendNow.setFont(new Font("Helvetica Neue", 15));
         btnSendNow.setTextFill(Color.WHITE);
         HBox.setHgrow(btnSendNow, Priority.ALWAYS);
