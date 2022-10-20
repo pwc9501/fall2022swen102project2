@@ -34,7 +34,7 @@ public class GUI extends Application {
         HBox fldFakeMessage = new HBox();
         fldFakeMessage.prefWidthProperty().bind(stage.widthProperty());
         root.prefWidthProperty().bind(stage.widthProperty());
-       
+        
         
         Button openUserInput = new Button("?");
         fldFakeMessage.getChildren().addAll(
@@ -44,7 +44,7 @@ public class GUI extends Application {
             
         );
         root.setBottom(fldFakeMessage);
-        
+
         VBox userInput = new VBox(25);
         userInput.setPadding(new Insets(55));
         VBox senderVBox = new VBox(5);
@@ -110,6 +110,7 @@ public class GUI extends Application {
             messageVBox,
             deliveryTime
         );
+    
         Stage popUserInput = new Stage();
         popUserInput.initModality(Modality.APPLICATION_MODAL);
         popUserInput.initOwner(stage);

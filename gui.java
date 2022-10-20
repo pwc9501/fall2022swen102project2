@@ -1,4 +1,5 @@
 
+import Controller.OpenUserInput;
 import Random.randomText;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -37,7 +39,8 @@ public class gui extends Application{
     }
 
     private TextField makeTextField(String text){
-        TextField t = new TextField(text);
+        TextField t = new TextField();
+        t.setPromptText(text);
         t.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         return t;
     }
@@ -81,18 +84,63 @@ public class gui extends Application{
             typingAnimation.play();
 
 
-            VBox vBox = new VBox();
-            vBox.setPadding(new Insets(10));
+            VBox text = new VBox();
+            text.setPadding(new Insets(10));
             for(int i = 0; i < 10; i++){
                 Label l = makeLabel();
-                vBox.getChildren().add(l);
+                text.getChildren().add(l);
                 if(i != 9){
-                    vBox.setMargin(l, new Insets(0, 0, 5, 0));
+                    text.setMargin(l, new Insets(0, 0, 5, 0));
                 }
             }
 
-            borderPane.setCenter(vBox);
+            borderPane.setCenter(text);
+            
+            HBox userControls = new HBox();
+            userControls.setPadding(new Insets(10));
+            
+            TextField userTextField = makeTextField("Enter text");
+            userControls.getChildren().add(userTextField);
+            
+            Button userSend =  makeButton("Send Text");
+            userControls.getChildren().add(userSend);
 
+            Button popUp =  makeButton("?");
+            userControls.getChildren().add(popUp);
+            
+            Stage popUpStage = new Stage();
+            popUp.setOnAction(new OpenUserInput(popUpStage));
+
+            //popUpStage
+
+            GridPane popUpPane = new GridPane();
+            popUpPane.setPadding(new Insets(10));
+            popUpPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+            
+            TextField popUpTextField =  makeTextField("Enter text");
+            Button randomText =  makeButton("Random Text");
+
+            TextField popUpSenderField =  makeTextField("Enter Name");
+            Button randomSender =  makeButton("Random Name");
+
+            Button sendNow =  makeButton("Send Now");
+
+
+            popUpPane.add(popUpTextField, 0, 1);
+            popUpPane.add(randomText, 1, 1);
+
+            popUpPane.add(popUpSenderField, 0, 0);
+            popUpPane.add(randomSender, 1, 0);
+
+            popUpPane.add(sendNow, 0, 2);
+            
+            EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
+            randomText.setOnAction(randomTextObserver);
+
+            EventHandler<ActionEvent> updateObserver = new UpdateHandler(text, popUpTextField);
+            sendNow.setOnAction(updateObserver);
+
+            /*
             GridPane gridPane = new GridPane();
 
             gridPane.setPadding(new Insets(10)); 
@@ -121,16 +169,17 @@ public class gui extends Application{
             gridPane.add(b3, 1, 1);
             gridPane.add(t3, 0, 2);
             gridPane.add(b2, 1, 3);
+            */
+            //EventHandler<ActionEvent> randomTextObserver = new randomTextField(t);
+            //b.setOnAction(randomTextObserver);
 
-            EventHandler<ActionEvent> observer = new randomTextField(t);
-            b.setOnAction(observer);
+            EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
+            userSend.setOnAction(observer2);
 
-            EventHandler<ActionEvent> observer2 = new UpdateHandler(vBox, t);
-            b2.setOnAction(observer2);
-
-            borderPane.setBottom(gridPane);
+            borderPane.setBottom(userControls);
 
             stage.setScene(new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE));
+            popUpStage.setScene(new Scene(popUpPane));
             stage.setTitle("Fake Text App");
             stage.show();
     }
