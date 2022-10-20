@@ -26,7 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
-public class GUI extends Application {
+public class GUIDepreciated extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
