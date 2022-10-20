@@ -1,5 +1,7 @@
 package Controller;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -9,6 +11,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class SendNowEvent implements EventHandler<ActionEvent> {
@@ -35,7 +39,11 @@ public class SendNowEvent implements EventHandler<ActionEvent> {
             contact,
             messages
         );
-        root.setCenter(msgDisplay);
+        String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
+        Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play(); 
+;
 
 
         
