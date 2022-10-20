@@ -39,8 +39,8 @@ public class SendNowEvent implements EventHandler<ActionEvent> {
             contact,
             messages
         );
-        String musicFile = "Audio/MessageRecieved.mp3";     // For example
-        Media sound = new Media(new File(musicFile).toURI().toString());
+        String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
+        Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play(); 
 ;
