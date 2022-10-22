@@ -1,6 +1,6 @@
 package Controller;
 
-import View.GUI;
+import View.GUIDepreciated;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
