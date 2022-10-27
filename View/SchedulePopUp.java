@@ -101,10 +101,6 @@ public class SchedulePopUp extends Application {
         
         borderPane.setCenter(hbox);
         stage.show();
-
-         
-       
-        
     }
 
     public static void main(String[] args) {

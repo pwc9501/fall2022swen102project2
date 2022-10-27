@@ -7,17 +7,20 @@ import javax.print.DocFlavor.STRING;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 
 public class ScheduleText implements EventHandler<ActionEvent> {
     private int H;
     private int M;
     private String str;
+    private HBox hbox;
 
-    public ScheduleText(int H, int M, String str)
+    public ScheduleText(HBox hbox)
     {
-        this.H = H;
-        this.M = M;
-        this.str = str;
+        this.hbox = hbox;
+        this.H = Integer.parseInt(hbox.getChildren().get(0).toString());
+        this.M = Integer.parseInt(hbox.getChildren().get(2).toString());
+        this.str = hbox.getChildren().get(3).toString();
     }
 
     @Override
