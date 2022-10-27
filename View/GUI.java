@@ -1,5 +1,6 @@
 package View;
 import Controller.OpenUserInput;
+import Random.randomName;
 import Random.randomText;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
@@ -137,6 +138,9 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
 
+            EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
+            randomSender.setOnAction(randomNameObserver);
+
             EventHandler<ActionEvent> updateObserver = new UpdateHandler(text, popUpTextField);
             sendNow.setOnAction(updateObserver);
 
@@ -213,6 +217,20 @@ class UpdateHandler implements EventHandler<ActionEvent>{
     }
 }
 
+class randomNameField implements EventHandler<ActionEvent>{
+    private TextField text;
+    private randomName name;
+
+    public randomNameField(TextField text){
+        this.text = text;
+        this.name = new randomName();
+    }
+
+    @Override
+    public void handle(ActionEvent arg0){
+        text.setText(name.randomTString());
+    }
+}
 class randomTextField implements EventHandler<ActionEvent>{
     private TextField text;
     private randomText r;
