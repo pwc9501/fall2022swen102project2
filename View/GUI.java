@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -93,8 +96,35 @@ public class GUI extends Application{
                     text.setMargin(l, new Insets(0, 0, 5, 0));
                 }
             }
+            
+           
+            // ScrollPane scroll = new ScrollPane();
+            // scroll.setContent(text);
 
-            borderPane.setCenter(text);
+            // scroll.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+            // scroll.setHbarPolicy(ScrollBarPolicy.NEVER);
+
+            ScrollPane scroll = new ScrollPane();
+            VBox messages = new VBox();
+            
+            scroll.setPrefHeight(200);
+            scroll.setPrefWidth(350);
+            scroll.setFitToHeight(true);
+            scroll.setFitToWidth(true);
+            scroll.setContent(messages);
+            scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");;
+
+            // for(int i=0;i<100;i++){
+            //     Label l = makeLabel();
+            //     // l.setFill()
+            //     // l.setAlignment(Pos.TOP_CENTER);
+            //     messages.getChildren().add(l);
+            // }
+            messages.setAlignment(Pos.TOP_CENTER);
+            // scroll.setAlignment()
+
+
+            borderPane.setCenter(scroll);
             
             HBox userControls = new HBox();
             userControls.setPadding(new Insets(10));
@@ -210,6 +240,19 @@ class UpdateHandler implements EventHandler<ActionEvent>{
             ((Label) v.getChildren().get(i)).setText(messages[i-1]);
             ((Label) v.getChildren().get(i)).setFont(new Font(20));
         }
+    }
+}
+
+class SendMessageHandler implements EventHandler<ActionEvent>{
+    private VBox v;
+    private String message_body;
+
+    public SendMessageHandler(VBox v, String message_body){
+        this.v=v;
+        this.message_body=message_body;
+    }
+    public void handle(ActionEvent arg0){
+
     }
 }
 
