@@ -1,5 +1,7 @@
 package View;
 import Controller.OpenUserInput;
+import Controller.RandomMessageField;
+import Controller.SendNowEvent;
 import Random.randomText;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
@@ -134,44 +136,11 @@ public class GUI extends Application{
 
             popUpPane.add(sendNow, 0, 2);
             
-            EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
+            EventHandler<ActionEvent> randomTextObserver = new RandomMessageField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
 
-            EventHandler<ActionEvent> updateObserver = new UpdateHandler(text, popUpTextField);
-            sendNow.setOnAction(updateObserver);
-
-            /*
-            GridPane gridPane = new GridPane();
-
-            gridPane.setPadding(new Insets(10)); 
-            
-            gridPane.setVgap(5); 
-            gridPane.setHgap(5);       
-            
-            gridPane.setAlignment(Pos.CENTER);
-
-            TextField t = makeTextField("Enter message here");
-            Button b = makeButton("Random Text");
-            
-            //work in progress
-            TextField t2 = makeTextField("Enter name of receipient");
-            Button b3 = makeButton("Random recipient");
-
-            //work in progress
-            TextField t3 = makeTextField("Enter date and time");
-
-
-            Button b2 = makeButton("Send text");
-
-            gridPane.add(t, 0, 0);
-            gridPane.add(b, 1, 0);
-            gridPane.add(t2, 0, 1);
-            gridPane.add(b3, 1, 1);
-            gridPane.add(t3, 0, 2);
-            gridPane.add(b2, 1, 3);
-            */
-            //EventHandler<ActionEvent> randomTextObserver = new randomTextField(t);
-            //b.setOnAction(randomTextObserver);
+            EventHandler<ActionEvent> sendNowObserver = new SendNowEvent(popUpStage, borderPane, popUpTextField, popUpSenderField);
+            sendNow.setOnAction(sendNowObserver);
 
             EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
             userSend.setOnAction(observer2);
@@ -210,21 +179,5 @@ class UpdateHandler implements EventHandler<ActionEvent>{
             ((Label) v.getChildren().get(i)).setText(messages[i-1]);
             ((Label) v.getChildren().get(i)).setFont(new Font(20));
         }
-    }
-}
-
-class randomTextField implements EventHandler<ActionEvent>{
-    private TextField text;
-    private randomText r;
-
-    public randomTextField(TextField text){
-        this.text = text;
-        this.r = new randomText();
-    }
-
-    @Override
-    public void handle(ActionEvent arg0) {
-        // TODO Auto-generated method stub
-        text.setText(r.randomTString());
     }
 }

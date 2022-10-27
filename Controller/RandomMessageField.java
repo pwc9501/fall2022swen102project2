@@ -6,11 +6,12 @@ import Random.randomText;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
-public class UpdateMessageField implements EventHandler<ActionEvent> {
-    private TextArea txtMessage;
+public class RandomMessageField implements EventHandler<ActionEvent> {
+    private TextField txtMessage;
 
-    public UpdateMessageField(TextArea txtMessage) {
+    public RandomMessageField(TextField txtMessage) {
         this.txtMessage = txtMessage;
 
     }

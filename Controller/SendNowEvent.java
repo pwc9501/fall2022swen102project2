@@ -18,10 +18,10 @@ import javafx.stage.Stage;
 public class SendNowEvent implements EventHandler<ActionEvent> {
     private Stage popUp;
     private BorderPane root;
-    private TextArea message;
+    private TextField message;
     private TextField sender;
 
-    public SendNowEvent(Stage popUp, BorderPane root, TextArea message, TextField sender) {
+    public SendNowEvent(Stage popUp, BorderPane root, TextField message, TextField sender) {
         this.popUp = popUp;
         this.root = root;
         this.message = message;

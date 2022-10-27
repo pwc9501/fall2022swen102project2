@@ -1,7 +1,7 @@
 package View;
 import Controller.OpenUserInput;
 import Controller.SendNowEvent;
-import Controller.UpdateMessageField;
+import Controller.RandomMessageField;
 import Controller.UpdateSenderField;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -73,11 +73,11 @@ public class GUIDepreciated extends Application {
     
         HBox message = new HBox();
         Button btnRandomizeMessage = new Button("Randomize");
-        TextArea fldMessage = new TextArea();
+        TextField fldMessage = new TextField();
        
         fldMessage.setMaxHeight(fldMessage.getHeight() / 1.5);
         btnRandomizeMessage.snapPositionY(fldMessage.getHeight()/2);
-        btnRandomizeMessage.setOnAction(new UpdateMessageField(fldMessage));
+        btnRandomizeMessage.setOnAction(new RandomMessageField(fldMessage));
         message.getChildren().addAll(
             fldMessage,
             btnRandomizeMessage
