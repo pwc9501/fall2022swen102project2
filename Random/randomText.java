@@ -19,11 +19,6 @@ public class randomText{
         this.random = new Random();
     }
 
-    public randomText()
-    {
-        this.file = new File("preset_text.txt");
-    }
-
     private int totallines(){
         int total = 0;
         try{
