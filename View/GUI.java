@@ -1,4 +1,5 @@
 package View;
+
 import Controller.OpenUserInput;
 import Random.randomText;
 import javafx.animation.Animation;
@@ -123,6 +124,9 @@ public class GUI extends Application{
             TextField popUpSenderField =  makeTextField("Enter Name");
             Button randomSender =  makeButton("Random Name");
 
+            TextField timeSchedule =  makeTextField("schedule the time");
+            Button schedule = makeButton("Schedule");
+
             Button sendNow =  makeButton("Send Now");
 
 
@@ -132,7 +136,10 @@ public class GUI extends Application{
             popUpPane.add(popUpSenderField, 0, 0);
             popUpPane.add(randomSender, 1, 0);
 
-            popUpPane.add(sendNow, 0, 2);
+            popUpPane.add(timeSchedule, 0, 2);
+            popUpPane.add(schedule, 1, 2);
+
+            popUpPane.add(sendNow, 0, 3);
             
             EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
             randomText.setOnAction(randomTextObserver);

@@ -8,12 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
 
-public class randomText{
+public class randomSender {
     private File file; 
     private BufferedReader br; 
     private Random random;
 
-    public randomText(){
+    public randomSender(){
         this.file = new File("preset_text.txt");
         this.br = null;
         this.random = new Random();
@@ -50,5 +50,4 @@ public class randomText{
         randomText rd = new randomText();
         System.out.println(rd.randomTString());
     }
-
 }
