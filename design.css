@@ -17,9 +17,7 @@
 }
 
 .scroll-pane .scroll-bar:vertical .thumb{
-    -fx-border-color: white;
-    -fx-border-radius: 10;
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-background-radius: 10;
     -fx-padding: 0 10 10 0;
 }
