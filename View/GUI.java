@@ -1,6 +1,8 @@
 package View;
 
 import Controller.OpenUserInput;
+import Controller.ScheduleText;
+import Controller.popUpTextHandler;
 import Random.randomName;
 import Random.randomText;
 import javafx.animation.Animation;
@@ -12,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -55,6 +58,50 @@ public class GUI extends Application{
         l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
         return l;
     }
+
+     /**
+     * Adds integers (corresponding to hours) as items in the combo box
+     */
+    public ComboBox<Integer> addHoursDropDown() {
+        ComboBox<Integer> cboxHours = new ComboBox<>();
+        for (int i = 1; i <= 12; i++) {
+            cboxHours.getItems().add(i);
+        }
+        return cboxHours;
+    }
+
+    /**
+     * Adds the colon to seperate the hour and minute comboboxs
+     */
+    public Label addColon() {
+        Label lblColon = new Label(":");
+        lblColon.setFont(new Font(STYLESHEET_CASPIAN, 22));
+        lblColon.setTextFill(Color.WHITE);
+        return lblColon;
+    }
+
+
+    /**
+     * Adds integers (corresponding to minutes) as items in the combo box
+     */
+    public ComboBox<Integer> addMinutesDropDown() {
+        ComboBox<Integer> cboxMinutes = new ComboBox<>();
+        for (int i = 1; i <= 59; i++) {
+            cboxMinutes.getItems().add(i);
+        }
+        return cboxMinutes;
+    }
+
+
+    /**
+     * Adds Combobox with AM/PM items
+     */
+    public ComboBox<String> addAmPmDropDown() {
+        ComboBox<String> cboxAmPm = new ComboBox<>();
+        cboxAmPm.getItems().addAll("AM", "PM");
+        return cboxAmPm;
+    }
+
 
     
     @Override
@@ -148,49 +195,37 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new UpdateHandler(text, popUpTextField);
+            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text);
             sendNow.setOnAction(updateObserver);
-
-            /*
-            GridPane gridPane = new GridPane();
-
-            gridPane.setPadding(new Insets(10)); 
-            
-            gridPane.setVgap(5); 
-            gridPane.setHgap(5);       
-            
-            gridPane.setAlignment(Pos.CENTER);
-
-            TextField t = makeTextField("Enter message here");
-            Button b = makeButton("Random Text");
-            
-            //work in progress
-            TextField t2 = makeTextField("Enter name of receipient");
-            Button b3 = makeButton("Random recipient");
-
-            //work in progress
-            TextField t3 = makeTextField("Enter date and time");
-
-
-            Button b2 = makeButton("Send text");
-
-            gridPane.add(t, 0, 0);
-            gridPane.add(b, 1, 0);
-            gridPane.add(t2, 0, 1);
-            gridPane.add(b3, 1, 1);
-            gridPane.add(t3, 0, 2);
-            gridPane.add(b2, 1, 3);
-            */
-            //EventHandler<ActionEvent> randomTextObserver = new randomTextField(t);
-            //b.setOnAction(randomTextObserver);
 
             EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
             userSend.setOnAction(observer2);
+
+            //schedule popUp 
+            Stage scheduleStage = new Stage();
+            schedule.setOnAction(new OpenUserInput(scheduleStage));
+
+            BorderPane schedulePane = new BorderPane();
+            schedulePane.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), Insets.EMPTY)));
+            HBox hbox = new HBox();
+    
+            hbox.getChildren().add(addHoursDropDown());
+            hbox.getChildren().add(addColon());
+            hbox.getChildren().add(addMinutesDropDown());
+            hbox.getChildren().add(addAmPmDropDown());
+            schedulePane.setCenter(hbox);
+            Button scheduleButton = makeButton("Confirm");
+            schedulePane.setBottom(scheduleButton);
+            
+            EventHandler<ActionEvent> scheduleTextObserver = new ScheduleText(hbox, timeSchedule);
+            scheduleButton.setOnAction(scheduleTextObserver);
+            
 
             borderPane.setBottom(userControls);
 
             stage.setScene(new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE));
             popUpStage.setScene(new Scene(popUpPane));
+            scheduleStage.setScene(new Scene(schedulePane));
             stage.setTitle("Fake Text App");
             stage.show();
     }

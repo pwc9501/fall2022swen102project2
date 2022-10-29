@@ -8,6 +8,7 @@
         "c:\\Users\\xianyu\\Downloads\\javafx-sdk-19\\lib\\javafx.media.jar",
         "c:\\Users\\xianyu\\Downloads\\javafx-sdk-19\\lib\\javafx.swing.jar",
         "c:\\Users\\xianyu\\Downloads\\javafx-sdk-19\\lib\\javafx.web.jar",
-        "c:\\Users\\xianyu\\Downloads\\javafx-sdk-19\\lib\\javafx-swt.jar"
+        "c:\\Users\\xianyu\\Downloads\\javafx-sdk-19\\lib\\javafx-swt.jar",
+        "/Users/liangchu/SoftDev2/javafx-sdk-17.0.2/lib/**/*.jar"
     ]
 }
