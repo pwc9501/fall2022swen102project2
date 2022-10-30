@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -50,14 +51,6 @@ public class GUI extends Application{
         return t;
     }
 
-    private Label makeLabel(){
-        Label l = new Label();
-        l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        l.setMinHeight(40);
-        l.setAlignment(Pos.CENTER);
-        l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
-        return l;
-    }
 
      /**
      * Adds integers (corresponding to hours) as items in the combo box
@@ -132,7 +125,8 @@ public class GUI extends Application{
 
             typingAnimation.play();
 
-
+            
+            /*
             VBox text = new VBox();
             text.setPadding(new Insets(10));
             for(int i = 0; i < 10; i++){
@@ -142,8 +136,17 @@ public class GUI extends Application{
                     text.setMargin(l, new Insets(0, 0, 5, 0));
                 }
             }
-
-            borderPane.setCenter(text);
+            */
+            
+            ScrollPane scroll = new ScrollPane();
+            VBox text = new VBox();
+            scroll.setPrefHeight (200) ;
+            scroll.setPrefWidth(350);
+            scroll.setFitToHeight(true);
+            scroll.setFitToWidth(true);
+            scroll.setContent(text);
+            scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");
+            borderPane.setCenter(scroll);
             
             HBox userControls = new HBox();
             userControls.setPadding(new Insets(10));
@@ -198,8 +201,8 @@ public class GUI extends Application{
             EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text);
             sendNow.setOnAction(updateObserver);
 
-            EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
-            userSend.setOnAction(observer2);
+            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField);
+            userSend.setOnAction(sendObserver) ;
 
             //schedule popUp 
             Stage scheduleStage = new Stage();
@@ -233,7 +236,7 @@ public class GUI extends Application{
         launch(args);
     }
 }
-
+/*
 class UpdateHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private TextField text;
@@ -258,7 +261,7 @@ class UpdateHandler implements EventHandler<ActionEvent>{
         }
     }
 }
-
+*/
 class randomNameField implements EventHandler<ActionEvent>{
     private TextField text;
     private randomName name;
@@ -271,6 +274,29 @@ class randomNameField implements EventHandler<ActionEvent>{
     @Override
     public void handle(ActionEvent arg0){
         text.setText(name.randomTString());
+    }
+}
+class SendMessageHandler implements EventHandler<ActionEvent>{
+    private VBox v;
+    private TextField text;
+
+    public SendMessageHandler (VBox v, TextField text) {
+        this.v=v;
+        this.text=text;
+    }
+
+    private Label makeLabel(String text){
+        Label l = new Label(text);
+        l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        l.setMinHeight(40);
+        l.setAlignment(Pos.CENTER);
+        l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
+        return l;
+    }
+
+    public void handle (ActionEvent arg0) {
+        Label l = makeLabel(text.getText());
+        v.getChildren().add(l);
     }
 }
 class randomTextField implements EventHandler<ActionEvent>{
