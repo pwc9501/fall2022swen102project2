@@ -48,8 +48,8 @@ public class GUI extends Application{
         return t;
     }
 
-    private Label makeLabel(){
-        Label l = new Label();
+    public static Label makeLabel(String text){
+        Label l = new Label(text);
         l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         l.setMinHeight(40);
         l.setAlignment(Pos.CENTER);
@@ -88,14 +88,14 @@ public class GUI extends Application{
 
 
             VBox text = new VBox();
-            text.setPadding(new Insets(10));
-            for(int i = 0; i < 10; i++){
-                Label l = makeLabel();
-                text.getChildren().add(l);
-                if(i != 9){
-                    text.setMargin(l, new Insets(0, 0, 5, 0));
-                }
-            }
+            // text.setPadding(new Insets(10));
+            // for(int i = 0; i < 10; i++){
+            //     Label l = makeLabel("test");
+            //     text.getChildren().add(l);
+            //     if(i != 9){
+            //         text.setMargin(l, new Insets(0, 0, 5, 0));
+            //     }
+            // }
             
            
             // ScrollPane scroll = new ScrollPane();
@@ -113,9 +113,10 @@ public class GUI extends Application{
             scroll.setFitToWidth(true);
             scroll.setContent(messages);
             scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");;
+            // scroll.setVvalue(borderPane.layout());
 
             // for(int i=0;i<100;i++){
-            //     Label l = makeLabel();
+            //     Label l = makeLabel("test" + Integer.toString(i));
             //     // l.setFill()
             //     // l.setAlignment(Pos.TOP_CENTER);
             //     messages.getChildren().add(l);
@@ -203,8 +204,11 @@ public class GUI extends Application{
             //EventHandler<ActionEvent> randomTextObserver = new randomTextField(t);
             //b.setOnAction(randomTextObserver);
 
-            EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
-            userSend.setOnAction(observer2);
+            // EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
+            // userSend.setOnAction(observer2);
+
+            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(messages, userTextField);
+            userSend.setOnAction(sendObserver);
 
             borderPane.setBottom(userControls);
 
@@ -244,15 +248,17 @@ class UpdateHandler implements EventHandler<ActionEvent>{
 }
 
 class SendMessageHandler implements EventHandler<ActionEvent>{
+    
     private VBox v;
-    private String message_body;
+    private TextField text;
 
-    public SendMessageHandler(VBox v, String message_body){
+    public SendMessageHandler(VBox v, TextField text){
         this.v=v;
-        this.message_body=message_body;
+        this.text=text;
     }
     public void handle(ActionEvent arg0){
-
+        Label l = GUI.makeLabel(text.getText());
+        v.getChildren().add(l);
     }
 }
 
