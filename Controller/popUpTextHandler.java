@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,6 +21,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
@@ -78,5 +81,9 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         else{
             text();
         }
+        String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
+        Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play(); 
      }
 }

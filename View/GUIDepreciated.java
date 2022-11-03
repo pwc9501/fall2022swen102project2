@@ -1,6 +1,5 @@
 package View;
 import Controller.OpenUserInput;
-import Controller.SendNowEvent;
 import Controller.UpdateMessageField;
 import Controller.UpdateSenderField;
 import javafx.application.Application;
@@ -120,7 +119,7 @@ public class GUIDepreciated extends Application {
         
         stage.setScene(new Scene(root));
         root.prefWidthProperty().bind(stage.getScene().widthProperty());
-        btnSendNow.setOnAction(new SendNowEvent(popUserInput, root, fldMessage, fldSender));
+        //btnSendNow.setOnAction(new SendNowEvent(popUserInput, root, fldMessage, fldSender));
         stage.setTitle("SMS");
         stage.show();
     }
