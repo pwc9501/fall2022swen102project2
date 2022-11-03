@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollToEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -122,6 +123,7 @@ public class GUI extends Application{
             //     messages.getChildren().add(l);
             // }
             messages.setAlignment(Pos.TOP_CENTER);
+            scroll.setVvalue(1.0);
             // scroll.setAlignment()
 
 
@@ -207,7 +209,7 @@ public class GUI extends Application{
             // EventHandler<ActionEvent> observer2 = new UpdateHandler(text, userTextField);
             // userSend.setOnAction(observer2);
 
-            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(messages, userTextField);
+            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(messages, userTextField, scroll);
             userSend.setOnAction(sendObserver);
 
             borderPane.setBottom(userControls);
@@ -251,14 +253,17 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
     
     private VBox v;
     private TextField text;
+    private ScrollPane scroll;
 
-    public SendMessageHandler(VBox v, TextField text){
+    public SendMessageHandler(VBox v, TextField text, ScrollPane scroll){
         this.v=v;
         this.text=text;
+        this.scroll=scroll;
     }
     public void handle(ActionEvent arg0){
         Label l = GUI.makeLabel(text.getText());
         v.getChildren().add(l);
+        v.heightProperty().addListener(observable -> scroll.setVvalue(1D));
     }
 }
 
