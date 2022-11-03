@@ -201,7 +201,7 @@ public class GUI extends Application{
             EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender);
             sendNow.setOnAction(updateObserver);
 
-            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField);
+            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
             userSend.setOnAction(sendObserver) ;
 
             //schedule popUp 
@@ -279,10 +279,12 @@ class randomNameField implements EventHandler<ActionEvent>{
 class SendMessageHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private TextField text;
+    private ScrollPane scroll;
 
-    public SendMessageHandler (VBox v, TextField text) {
+    public SendMessageHandler (VBox v, TextField text, ScrollPane scroll) {
         this.v=v;
         this.text=text;
+        this.scroll=scroll;
     }
 
     private Label makeLabel(String text){
@@ -297,6 +299,7 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
     public void handle (ActionEvent arg0) {
         Label l = makeLabel(text.getText());
         v.getChildren().add(l);
+        v.heightProperty().addListener(observable -> scroll.setVvalue(1D));
     }
 }
 class randomTextField implements EventHandler<ActionEvent>{
