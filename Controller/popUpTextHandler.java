@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import View.GUI;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -32,13 +34,15 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private TextField sender;
     private TextField text;
     private VBox v;
+    private Button b;
 
-    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v)
+    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b)
     {
         this.time = time;
         this.sender = sender;
         this.text = text;
         this.v = v;
+        this.b = b;
     }
 
     private Label makeLabel(String text){
@@ -85,5 +89,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play(); 
+        sender.setEditable(false);
+        b.setDisable(true);
      }
 }
