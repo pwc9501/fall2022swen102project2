@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 public class ScheduleText implements EventHandler<ActionEvent> {
     private ComboBox<Integer> H;
@@ -14,11 +15,14 @@ public class ScheduleText implements EventHandler<ActionEvent> {
     private ComboBox<String> str;
     private HBox hbox;
     private TextField textField;
-
-    public ScheduleText(HBox hbox, TextField textField)
+    private Stage popStage;
+    private Stage scheduleStage;
+    public ScheduleText(HBox hbox, TextField textField, Stage popUpStage, Stage scheduleStage)
     {
         this.hbox = hbox;
         this.textField = textField;
+        this.popStage = popUpStage;
+        this.scheduleStage = scheduleStage;
         
         this.H = (ComboBox<Integer>) hbox.getChildren().get(0);
         this.M = (ComboBox<Integer>) hbox.getChildren().get(2);
@@ -58,6 +62,8 @@ public class ScheduleText implements EventHandler<ActionEvent> {
         String s = sb.toString();
         textField.setText(s);
         System.out.println(s);
+        scheduleStage.close();
+       
     }
     
 }
