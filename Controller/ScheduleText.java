@@ -1,5 +1,7 @@
 package Controller;
 
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
@@ -28,17 +30,22 @@ public class ScheduleText implements EventHandler<ActionEvent> {
         int hour = H.getValue();
         int minute = M.getValue();
         String timezone = str.getValue();
-        if (timezone.equals("PM"))
+        if (timezone.equals("PM") && (hour >= 1 && hour <= 11))
         {
             hour += 12;
+        }
+        else if(timezone.equals("AM") && hour == 12){
+            hour = 0;
         }
         StringBuilder sb = new StringBuilder();
         sb.append(java.time.LocalDate.now());
         sb.append(" ");
-        if(hour < 10){
+        if(hour < 10 && timezone.equals("AM")){
             sb.append("0" + hour);
         }
-        sb.append(hour);
+        else{
+            sb.append(hour);
+        }
         sb.append(":");
         if(minute < 10){
             sb.append("0" + minute);
@@ -50,6 +57,7 @@ public class ScheduleText implements EventHandler<ActionEvent> {
         sb.append("00");
         String s = sb.toString();
         textField.setText(s);
+        System.out.println(s);
     }
     
 }
