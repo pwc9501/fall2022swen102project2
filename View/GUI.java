@@ -226,7 +226,9 @@ public class GUI extends Application{
 
             borderPane.setBottom(userControls);
 
-            stage.setScene(new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE));
+            Scene scene = new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE);
+            scene.getStylesheets().add("design.css");
+            stage.setScene(scene);
             popUpStage.setScene(new Scene(popUpPane));
             scheduleStage.setScene(new Scene(schedulePane));
             stage.setTitle("Fake Text App");
