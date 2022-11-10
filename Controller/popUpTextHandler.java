@@ -75,7 +75,8 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
             LocalTime localTime = LocalTime.now();
             String[] dataAndTimeString = time.getText().split(" ");
             String[] timeString = dataAndTimeString[1].split(":");
-            int duration = (Integer.parseInt(timeString[0]) - localTime.getHour()) * 60 + (Integer.parseInt(timeString[1]) - localTime.getMinute());
+            Double duration = (Integer.parseInt(timeString[0]) - localTime.getHour()) * 60 + (Integer.parseInt(timeString[1]) - localTime.getMinute() 
+            + (Double.parseDouble(timeString[2]) - localTime.getSecond()) / 60);
             System.out.println(duration);
             Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(duration), ev -> {
                 text();
