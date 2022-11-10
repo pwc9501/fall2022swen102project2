@@ -178,7 +178,7 @@ public class GUI extends Application{
             TextField timeSchedule =  makeTextField("schedule the time");
             Button schedule = makeButton("Schedule");
 
-            Button sendNow =  makeButton("Send Now");
+            Button sendNow =  makeButton("Send");
 
 
             popUpPane.add(popUpTextField, 0, 1);
@@ -220,7 +220,7 @@ public class GUI extends Application{
             Button scheduleButton = makeButton("Confirm");
             schedulePane.setBottom(scheduleButton);
             
-            EventHandler<ActionEvent> scheduleTextObserver = new ScheduleText(hbox, timeSchedule);
+            EventHandler<ActionEvent> scheduleTextObserver = new ScheduleText(hbox, timeSchedule, popUpStage, scheduleStage);
             scheduleButton.setOnAction(scheduleTextObserver);
             
 
