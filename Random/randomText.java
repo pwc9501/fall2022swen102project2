@@ -28,7 +28,8 @@ public class randomText{
             }
             br.close();    
         }catch(IOException e){
-            System.out.println("File not found");
+            // System.out.println("File not found");
+            System.err.println(e.getMessage());
         }
         return total;
         

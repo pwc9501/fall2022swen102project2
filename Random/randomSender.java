@@ -37,6 +37,7 @@ public class randomSender {
     
     public String randomTString(){
         try{
+            System.out.println(totallines());
             int randInt = random.nextInt(totallines());
             return Files.readAllLines(Paths.get(file.getName())).get(randInt);
         }catch(IOException e){

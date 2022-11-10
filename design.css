@@ -1,10 +1,15 @@
+.border-pane{
+    -fx-background-color: grey;
+}
+
 .scroll-pane > .viewport{
     -fx-background-color: transparent;
 }
 
 .scroll-pane{
-    -fx-background-color: transparent;
+    -fx-background-color: grey;
     -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
 .scroll-pane .scroll-bar:vertical{
@@ -31,4 +36,11 @@
 .scroll-pane .scroll-bar:vertical .thumb:pressed{
     -fx-background-color: white;
     -fx-opacity: 0.5;
+}
+
+.label {
+    -fx-text-alignment: left;
+    -fx-background-color: purple;
+    -fx-background-radius: 10;
+    -fx-padding: 10 10 10 10;
 }

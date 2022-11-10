@@ -101,7 +101,7 @@ public class GUI extends Application{
     public void start(Stage stage){
 
             BorderPane borderPane = new BorderPane();
-            borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+            //borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
             String content = "Ritche's Texts";
             Text title = new Text();
@@ -145,7 +145,7 @@ public class GUI extends Application{
             scroll.setFitToHeight(true);
             scroll.setFitToWidth(true);
             scroll.setContent(text);
-            scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");
+            //scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");
             borderPane.setCenter(scroll);
             
             HBox userControls = new HBox();
@@ -291,9 +291,12 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
 
     private Label makeLabel(String text){
         Label l = new Label(text);
-        l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        // l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        l.setPrefWidth(7.5 * text.length());
         l.setMinHeight(40);
-        l.setAlignment(Pos.CENTER);
+        l.setId("label");
+        // l.getStylesheets().add("label-l");
+        // l.setAlignment(Pos.CENTER_LEFT);
         l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
         return l;
     }
