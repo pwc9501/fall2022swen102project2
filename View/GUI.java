@@ -198,7 +198,7 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender);
+            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage);
             sendNow.setOnAction(updateObserver);
 
             EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);

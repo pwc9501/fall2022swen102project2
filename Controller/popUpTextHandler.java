@@ -27,6 +27,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class popUpTextHandler implements EventHandler<ActionEvent>{
@@ -35,14 +36,16 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private TextField text;
     private VBox v;
     private Button b;
+    private Stage popUpStage;
 
-    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b)
+    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage)
     {
         this.time = time;
         this.sender = sender;
         this.text = text;
         this.v = v;
         this.b = b;
+        this.popUpStage = popUpStage;
     }
 
     private Label makeLabel(String text){
@@ -92,5 +95,6 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         mediaPlayer.play(); 
         sender.setEditable(false);
         b.setDisable(true);
+        popUpStage.close();
      }
 }
