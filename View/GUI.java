@@ -292,14 +292,13 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
     }
 
     private Label makeLabel(String text){
-        Label l = new Label();
-        int maxlength = 300;
+        Label l = new Label(text);
+        int maxlength = 200;
         if(text.length() > maxlength){
-            String copy = text.substring(0, maxlength);
-            l.setText(copy);
+            l.setMinHeight(text.length() * .75);
         }
         else{
-            l.setText(text);
+            l.setMinHeight(125);
         }
         if(i % 2 == 0){
         l.getStyleClass().add("chat-bubble");
@@ -309,7 +308,6 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
         }
         i++;
         l.setMaxSize(200, Double.MAX_VALUE);
-        l.setMinHeight(225);
         l.setAlignment(Pos.CENTER);
         return l;
     }
