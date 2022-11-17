@@ -200,7 +200,7 @@ public class GUI extends Application{
 
             EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage);
             sendNow.setOnAction(updateObserver);
-
+            
             EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
             userSend.setOnAction(sendObserver) ;
 
@@ -226,7 +226,7 @@ public class GUI extends Application{
 
             borderPane.setBottom(userControls);
 
-            Scene scene = new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE);
+            Scene scene = new Scene(borderPane, 400, Double.MAX_VALUE);
             scene.getStylesheets().add("design.css");
             stage.setScene(scene);
             popUpStage.setScene(new Scene(popUpPane));
@@ -282,20 +282,35 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private TextField text;
     private ScrollPane scroll;
+    private int i;
 
     public SendMessageHandler (VBox v, TextField text, ScrollPane scroll) {
         this.v=v;
         this.text=text;
         this.scroll=scroll;
+        this.i = 0;
     }
 
     private Label makeLabel(String text){
-        Label l = new Label(text);
+        Label l = new Label();
+        int maxlength = 250;
+        if(text.length() > maxlength){
+            String copy = text.substring(0, maxlength);
+            l.setText(copy);
+        }
+        else{
+            l.setText(text);
+        }
+        if(i % 2 == 0){
         l.getStyleClass().add("chat-bubble");
-        l.setMaxSize(200, 200);
-        l.setMinHeight(50);
+        }
+        else{
+            l.getStyleClass().add("chat-bubble2");
+        }
+        i++;
+        l.setMaxSize(200, Double.MAX_VALUE);
+        l.setMinHeight(500);
         l.setAlignment(Pos.CENTER);
-        l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
         return l;
     }
 
