@@ -293,7 +293,7 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
 
     private Label makeLabel(String text){
         Label l = new Label();
-        int maxlength = 250;
+        int maxlength = 300;
         if(text.length() > maxlength){
             String copy = text.substring(0, maxlength);
             l.setText(copy);
@@ -309,7 +309,7 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
         }
         i++;
         l.setMaxSize(200, Double.MAX_VALUE);
-        l.setMinHeight(500);
+        l.setMinHeight(225);
         l.setAlignment(Pos.CENTER);
         return l;
     }
