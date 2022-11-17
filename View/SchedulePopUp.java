@@ -47,9 +47,10 @@ public class SchedulePopUp extends Application {
      * Adds integers (corresponding to minutes) as items in the combo box
      */
     public void addMinutesDropDown() {
-        ComboBox<Integer> cboxMinutes = new ComboBox<>();
+        ComboBox<String> cboxMinutes = new ComboBox<>();
         for (int i = 1; i <= 59; i++) {
-            cboxMinutes.getItems().add(i);
+            
+            cboxMinutes.getItems().add(Integer.toString(i));
         }
         hbox.getChildren().add(cboxMinutes);
     }

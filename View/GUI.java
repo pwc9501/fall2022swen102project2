@@ -77,10 +77,15 @@ public class GUI extends Application{
     /**
      * Adds integers (corresponding to minutes) as items in the combo box
      */
-    public ComboBox<Integer> addMinutesDropDown() {
-        ComboBox<Integer> cboxMinutes = new ComboBox<>();
+    public ComboBox<String> addMinutesDropDown() {
+        ComboBox<String> cboxMinutes = new ComboBox<>();
         for (int i = 1; i <= 59; i++) {
-            cboxMinutes.getItems().add(i);
+            if (i < 10)
+                cboxMinutes.getItems().add("0" + String.valueOf(i));
+            else {
+                cboxMinutes.getItems().add(String.valueOf(i));
+
+            }
         }
         return cboxMinutes;
     }

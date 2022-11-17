@@ -32,7 +32,7 @@ public class ScheduleText implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent arg0) {
         int hour = H.getValue();
-        int minute = M.getValue();
+        int minute = Integer.parseInt(String.valueOf(M.getValue()));
         String timezone = str.getValue();
         if (timezone.equals("PM") && (hour >= 1 && hour <= 11))
         {
