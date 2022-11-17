@@ -291,8 +291,9 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
 
     private Label makeLabel(String text){
         Label l = new Label(text);
-        l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        l.setMinHeight(40);
+        l.getStyleClass().add("chat-bubble");
+        l.setMaxSize(200, 200);
+        l.setMinHeight(50);
         l.setAlignment(Pos.CENTER);
         l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
         return l;
