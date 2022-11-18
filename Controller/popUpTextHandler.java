@@ -37,6 +37,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private Button b;
     private Stage popUpStage;
+    private int i;
 
     public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage)
     {
@@ -46,14 +47,27 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         this.v = v;
         this.b = b;
         this.popUpStage = popUpStage;
+        this.i = 0;
     }
 
     private Label makeLabel(String text){
         Label l = new Label(text);
-        l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        l.setMinHeight(40);
+        int maxlength = 200;
+        if(text.length() > maxlength){
+            l.setMinHeight(text.length() * .75);
+        }
+        else{
+            l.setMinHeight(125);
+        }
+        if(i % 2 == 0){
+        l.getStyleClass().add("chat-bubble");
+        }
+        else{
+            l.getStyleClass().add("chat-bubble2");
+        }
+        i++;
+        l.setMaxSize(200, Double.MAX_VALUE);
         l.setAlignment(Pos.CENTER);
-        l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
         return l;
     }
 

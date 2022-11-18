@@ -293,12 +293,12 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
 
     private Label makeLabel(String text){
         Label l = new Label(text);
-        int maxlength = 200;
+        int maxlength = 100;
         if(text.length() > maxlength){
             l.setMinHeight(text.length() * .75);
         }
         else{
-            l.setMinHeight(125);
+            l.setMinHeight(75);
         }
         if(i % 2 == 0){
         l.getStyleClass().add("chat-bubble");
