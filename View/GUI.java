@@ -51,6 +51,14 @@ public class GUI extends Application{
         return t;
     }
 
+    private ComboBox<String> addTextBubbleType(){
+        ComboBox<String> TextBubbleType = new ComboBox<>();
+        TextBubbleType.getItems().add("Sender Message");
+        TextBubbleType.getItems().add("Reciever Message");
+        TextBubbleType.setMaxWidth(Double.MAX_VALUE);
+        return TextBubbleType;
+    }
+
 
      /**
      * Adds integers (corresponding to hours) as items in the combo box
@@ -103,14 +111,33 @@ public class GUI extends Application{
             BorderPane borderPane = new BorderPane();
             borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
+            //title and sender label
+            VBox beginningBox = new VBox();
+            beginningBox.setAlignment(Pos.CENTER);
+
             String content = "Ritche's Texts";
             Text title = new Text();
-            title.setFont(Font.font("Impact", FontWeight.BOLD, 20));
+            title.setFont(Font.font("Impact", FontWeight.BOLD, 25));
             title.setFill(Color.ORANGE);
             title.setTextAlignment(TextAlignment.CENTER);
 
-            borderPane.setTop(title);
-         
+            beginningBox.getChildren().add(title);
+
+            Label nameLabel = new Label("Name");
+            nameLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            nameLabel.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+            nameLabel.setTextFill(Color.WHITE);
+            nameLabel.setAlignment(Pos.CENTER);
+            nameLabel.setFont(new Font(20));
+            nameLabel.setPadding(new Insets(10, 0, 10, 0));
+
+            beginningBox.getChildren().add(nameLabel);
+
+            borderPane.setTop(beginningBox);
+            //end of title and sender label
+            
+
+            //typing animation for title
             Animation typingAnimation = new Transition(){
                 {
                     setCycleDuration(Duration.millis(2000));
@@ -126,18 +153,7 @@ public class GUI extends Application{
             typingAnimation.play();
 
             
-            /*
-            VBox text = new VBox();
-            text.setPadding(new Insets(10));
-            for(int i = 0; i < 10; i++){
-                Label l = makeLabel();
-                text.getChildren().add(l);
-                if(i != 9){
-                    text.setMargin(l, new Insets(0, 0, 5, 0));
-                }
-            }
-            */
-            
+            //scrollpane
             ScrollPane scroll = new ScrollPane();
             VBox text = new VBox();
             scroll.setPrefHeight (200) ;
@@ -147,9 +163,13 @@ public class GUI extends Application{
             scroll.setContent(text);
             scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");
             borderPane.setCenter(scroll);
-            
+            //end of scrollpane
+
+
+            //userControls
             HBox userControls = new HBox();
             userControls.setPadding(new Insets(10));
+            userControls.setAlignment(Pos.CENTER);
             
             TextField userTextField = makeTextField("Enter text");
             userControls.getChildren().add(userTextField);
@@ -162,6 +182,10 @@ public class GUI extends Application{
             
             Stage popUpStage = new Stage();
             popUp.setOnAction(new OpenUserInput(popUpStage));
+
+            borderPane.setBottom(userControls);
+
+            //end of userControls
 
             //popUpStage
 
@@ -178,6 +202,8 @@ public class GUI extends Application{
             TextField timeSchedule =  makeTextField("schedule the time");
             Button schedule = makeButton("Schedule");
 
+            ComboBox<String> TextBubbleComboBox = addTextBubbleType();
+
             Button sendNow =  makeButton("Send");
 
 
@@ -190,7 +216,9 @@ public class GUI extends Application{
             popUpPane.add(timeSchedule, 0, 2);
             popUpPane.add(schedule, 1, 2);
 
-            popUpPane.add(sendNow, 0, 3);
+            popUpPane.add(TextBubbleComboBox, 0, 3, 2, 1);
+
+            popUpPane.add(sendNow, 0, 4);
             
             EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
@@ -198,11 +226,13 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage);
+            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox);
             sendNow.setOnAction(updateObserver);
-
+            
             EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
-            userSend.setOnAction(sendObserver) ;
+            userSend.setOnAction(sendObserver);
+
+            //end of PopUpStage
 
             //schedule popUp 
             Stage scheduleStage = new Stage();
@@ -222,11 +252,10 @@ public class GUI extends Application{
             
             EventHandler<ActionEvent> scheduleTextObserver = new ScheduleText(hbox, timeSchedule, popUpStage, scheduleStage);
             scheduleButton.setOnAction(scheduleTextObserver);
-            
+            //end of schedule popUp
 
-            borderPane.setBottom(userControls);
 
-            Scene scene = new Scene(borderPane, Double.MAX_VALUE, Double.MAX_VALUE);
+            Scene scene = new Scene(borderPane, 400, Double.MAX_VALUE);
             scene.getStylesheets().add("design.css");
             stage.setScene(scene);
             popUpStage.setScene(new Scene(popUpPane));
@@ -238,32 +267,7 @@ public class GUI extends Application{
         launch(args);
     }
 }
-/*
-class UpdateHandler implements EventHandler<ActionEvent>{
-    private VBox v;
-    private TextField text;
 
-    public UpdateHandler(VBox v, TextField text){
-        this.v = v;
-        this.text = text;
-    }
-
-    @Override
-    public void handle(ActionEvent arg0) {
-        String[] messages = new String[v.getChildren().size()];
-        for(int i = 0; i < v.getChildren().size(); i++){
-            messages[i] = ((Label) v.getChildren().get(i)).getText();
-            ((Label) v.getChildren().get(i)).setText("");
-        }
-        ((Label) v.getChildren().get(0)).setText(text.getText());
-        ((Label) v.getChildren().get(0)).setFont(new Font(20));
-        for(int i = 1; i < v.getChildren().size(); i++){
-            ((Label) v.getChildren().get(i)).setText(messages[i-1]);
-            ((Label) v.getChildren().get(i)).setFont(new Font(20));
-        }
-    }
-}
-*/
 class randomNameField implements EventHandler<ActionEvent>{
     private TextField text;
     private randomName name;
@@ -282,19 +286,33 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private TextField text;
     private ScrollPane scroll;
+    private int i;
 
     public SendMessageHandler (VBox v, TextField text, ScrollPane scroll) {
         this.v=v;
         this.text=text;
         this.scroll=scroll;
+        this.i = 0;
     }
 
     private Label makeLabel(String text){
         Label l = new Label(text);
-        l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        l.setMinHeight(40);
+        int maxlength = 200;
+        if(text.length() > maxlength){
+            l.setMinHeight(text.length() * .75);
+        }
+        else{
+            l.setMinHeight(175);
+        }
+        if(i % 2 == 0){
+            l.getStyleClass().add("chat-bubble");
+        }
+        else{
+            l.getStyleClass().add("chat-bubble2");
+        }
+        i++;
+        l.setMaxSize(200, Double.MAX_VALUE);
         l.setAlignment(Pos.CENTER);
-        l.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(5), Insets.EMPTY)));
         return l;
     }
 
