@@ -17,6 +17,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -37,9 +38,9 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private Button b;
     private Stage popUpStage;
-    private int i;
+    private ComboBox<String> TextBubbleBox;
 
-    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage)
+    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage, ComboBox<String> TextBubbleBox)
     {
         this.time = time;
         this.sender = sender;
@@ -47,7 +48,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         this.v = v;
         this.b = b;
         this.popUpStage = popUpStage;
-        this.i = 0;
+        this.TextBubbleBox = TextBubbleBox;
     }
 
     private Label makeLabel(String text){
@@ -59,13 +60,12 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         else{
             l.setMinHeight(125);
         }
-        if(i % 2 == 0){
+        if(TextBubbleBox.getValue().equals("Reciever Message")){
         l.getStyleClass().add("chat-bubble");
         }
         else{
             l.getStyleClass().add("chat-bubble2");
         }
-        i++;
         l.setMaxSize(200, Double.MAX_VALUE);
         l.setAlignment(Pos.CENTER);
         return l;

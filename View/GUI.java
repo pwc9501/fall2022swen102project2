@@ -51,6 +51,14 @@ public class GUI extends Application{
         return t;
     }
 
+    private ComboBox<String> addTextBubbleType(){
+        ComboBox<String> TextBubbleType = new ComboBox<>();
+        TextBubbleType.getItems().add("Sender Message");
+        TextBubbleType.getItems().add("Reciever Message");
+        TextBubbleType.setMaxWidth(Double.MAX_VALUE);
+        return TextBubbleType;
+    }
+
 
      /**
      * Adds integers (corresponding to hours) as items in the combo box
@@ -107,9 +115,10 @@ public class GUI extends Application{
             Text title = new Text();
             title.setFont(Font.font("Impact", FontWeight.BOLD, 20));
             title.setFill(Color.ORANGE);
-            title.setTextAlignment(TextAlignment.CENTER);
+
 
             borderPane.setTop(title);
+            
          
             Animation typingAnimation = new Transition(){
                 {
@@ -126,17 +135,6 @@ public class GUI extends Application{
             typingAnimation.play();
 
             
-            /*
-            VBox text = new VBox();
-            text.setPadding(new Insets(10));
-            for(int i = 0; i < 10; i++){
-                Label l = makeLabel();
-                text.getChildren().add(l);
-                if(i != 9){
-                    text.setMargin(l, new Insets(0, 0, 5, 0));
-                }
-            }
-            */
             
             ScrollPane scroll = new ScrollPane();
             VBox text = new VBox();
@@ -178,6 +176,8 @@ public class GUI extends Application{
             TextField timeSchedule =  makeTextField("schedule the time");
             Button schedule = makeButton("Schedule");
 
+            ComboBox<String> TextBubbleComboBox = addTextBubbleType();
+
             Button sendNow =  makeButton("Send");
 
 
@@ -190,7 +190,9 @@ public class GUI extends Application{
             popUpPane.add(timeSchedule, 0, 2);
             popUpPane.add(schedule, 1, 2);
 
-            popUpPane.add(sendNow, 0, 3);
+            popUpPane.add(TextBubbleComboBox, 0, 3, 2, 1);
+
+            popUpPane.add(sendNow, 0, 4);
             
             EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
@@ -198,7 +200,7 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage);
+            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox);
             sendNow.setOnAction(updateObserver);
             
             EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
