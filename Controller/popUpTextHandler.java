@@ -60,8 +60,11 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         else{
             l.setMinHeight(125);
         }
-        if(TextBubbleBox.getValue().equals("Reciever Message")){
-        l.getStyleClass().add("chat-bubble");
+        if (TextBubbleBox.getValue() == null){
+            l.getStyleClass().add("chat-bubble");
+        }
+        else if(TextBubbleBox.getValue().equals("Reciever Message")){
+            l.getStyleClass().add("chat-bubble");
         }
         else{
             l.getStyleClass().add("chat-bubble2");
@@ -79,7 +82,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     public void text(){
         Label l = makeLabel(text.getText());
         if(!sender.getText().isEmpty()){
-            l.setText("From: " + sender.getText() + " = " + text.getText());
+            l.setText(text.getText());
         }
         v.getChildren().add(l);
         
@@ -109,9 +112,11 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
             mediaPlayer.play();
         }
       
-     
-        sender.setEditable(false);
-        b.setDisable(true);
+        if(!sender.getText().isEmpty()){
+            ((Label) v.getChildren().get(0)).setText(sender.getText());
+            sender.setEditable(false);
+            b.setDisable(true);
+        }
         popUpStage.close();
      }
 }

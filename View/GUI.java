@@ -113,11 +113,12 @@ public class GUI extends Application{
 
             String content = "Ritche's Texts";
             Text title = new Text();
-            title.setFont(Font.font("Impact", FontWeight.BOLD, 20));
+            title.setFont(Font.font("Impact", FontWeight.BOLD, 25));
             title.setFill(Color.ORANGE);
 
 
             borderPane.setTop(title);
+            borderPane.setAlignment(title, Pos.CENTER);
             
          
             Animation typingAnimation = new Transition(){
@@ -145,6 +146,17 @@ public class GUI extends Application{
             scroll.setContent(text);
             scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");
             borderPane.setCenter(scroll);
+            
+
+            Label nameLabel = new Label("Name");
+            nameLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            nameLabel.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+            nameLabel.setTextFill(Color.WHITE);
+            nameLabel.setAlignment(Pos.CENTER);
+            nameLabel.setFont(new Font(20));
+            nameLabel.setPadding(new Insets(10, 0, 10, 0));
+            text.getChildren().add(nameLabel);
+
             
             HBox userControls = new HBox();
             userControls.setPadding(new Insets(10));
@@ -227,6 +239,7 @@ public class GUI extends Application{
             
 
             borderPane.setBottom(userControls);
+            borderPane.setMargin(userControls, new Insets(0, 50, 0, 50));
 
             Scene scene = new Scene(borderPane, 400, Double.MAX_VALUE);
             scene.getStylesheets().add("design.css");
@@ -240,32 +253,7 @@ public class GUI extends Application{
         launch(args);
     }
 }
-/*
-class UpdateHandler implements EventHandler<ActionEvent>{
-    private VBox v;
-    private TextField text;
 
-    public UpdateHandler(VBox v, TextField text){
-        this.v = v;
-        this.text = text;
-    }
-
-    @Override
-    public void handle(ActionEvent arg0) {
-        String[] messages = new String[v.getChildren().size()];
-        for(int i = 0; i < v.getChildren().size(); i++){
-            messages[i] = ((Label) v.getChildren().get(i)).getText();
-            ((Label) v.getChildren().get(i)).setText("");
-        }
-        ((Label) v.getChildren().get(0)).setText(text.getText());
-        ((Label) v.getChildren().get(0)).setFont(new Font(20));
-        for(int i = 1; i < v.getChildren().size(); i++){
-            ((Label) v.getChildren().get(i)).setText(messages[i-1]);
-            ((Label) v.getChildren().get(i)).setFont(new Font(20));
-        }
-    }
-}
-*/
 class randomNameField implements EventHandler<ActionEvent>{
     private TextField text;
     private randomName name;
