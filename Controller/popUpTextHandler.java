@@ -82,17 +82,18 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
      */
 
     public void text(){
+        String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
+        Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
         if(!text.getText().isEmpty()){
             Label l = makeLabel(text.getText());
             v.getChildren().add(l);
+            mediaPlayer.play();
         }
     }
 
      @Override
      public void handle(ActionEvent arg0) {
-        String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
-        Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
          // TODO Auto-generated method stub
          if(!time.getText().isEmpty()){
             LocalTime localTime = LocalTime.now();
@@ -100,16 +101,13 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
             String[] timeString = dataAndTimeString[1].split(":");
             Double duration = (Integer.parseInt(timeString[0]) - localTime.getHour()) * 60 + (Integer.parseInt(timeString[1]) - localTime.getMinute() 
             + (Double.parseDouble(timeString[2]) - localTime.getSecond()) / 60);
-            System.out.println(duration);
             Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(duration), ev -> {
-                mediaPlayer.play(); 
                 text();
             }));
             timeline.play();
         }
         else{
             text();
-            mediaPlayer.play();
         }
       
         if(!sender.getText().isEmpty()){
