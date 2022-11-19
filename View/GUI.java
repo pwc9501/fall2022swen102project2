@@ -111,14 +111,29 @@ public class GUI extends Application{
             BorderPane borderPane = new BorderPane();
             borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
+            VBox beginningBox = new VBox();
+            beginningBox.setAlignment(Pos.CENTER);
+
             String content = "Ritche's Texts";
             Text title = new Text();
             title.setFont(Font.font("Impact", FontWeight.BOLD, 25));
             title.setFill(Color.ORANGE);
+            title.setTextAlignment(TextAlignment.CENTER);
+
+            beginningBox.getChildren().add(title);
+
+            Label nameLabel = new Label("Name");
+            nameLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            nameLabel.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
+            nameLabel.setTextFill(Color.WHITE);
+            nameLabel.setAlignment(Pos.CENTER);
+            nameLabel.setFont(new Font(20));
+            nameLabel.setPadding(new Insets(10, 0, 10, 0));
+
+            beginningBox.getChildren().add(nameLabel);
 
 
-            borderPane.setTop(title);
-            borderPane.setAlignment(title, Pos.CENTER);
+            borderPane.setTop(beginningBox);
             
          
             Animation typingAnimation = new Transition(){
@@ -148,18 +163,11 @@ public class GUI extends Application{
             borderPane.setCenter(scroll);
             
 
-            Label nameLabel = new Label("Name");
-            nameLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            nameLabel.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
-            nameLabel.setTextFill(Color.WHITE);
-            nameLabel.setAlignment(Pos.CENTER);
-            nameLabel.setFont(new Font(20));
-            nameLabel.setPadding(new Insets(10, 0, 10, 0));
-            text.getChildren().add(nameLabel);
 
             
             HBox userControls = new HBox();
             userControls.setPadding(new Insets(10));
+            userControls.setAlignment(Pos.CENTER);
             
             TextField userTextField = makeTextField("Enter text");
             userControls.getChildren().add(userTextField);
@@ -212,7 +220,7 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox);
+            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox);
             sendNow.setOnAction(updateObserver);
             
             EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
@@ -239,7 +247,7 @@ public class GUI extends Application{
             
 
             borderPane.setBottom(userControls);
-            borderPane.setMargin(userControls, new Insets(0, 50, 0, 50));
+            //borderPane.setMargin(userControls, new Insets(0, 50, 0, 50));
 
             Scene scene = new Scene(borderPane, 400, Double.MAX_VALUE);
             scene.getStylesheets().add("design.css");
@@ -291,7 +299,7 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
             l.setMinHeight(175);
         }
         if(i % 2 == 0){
-        l.getStyleClass().add("chat-bubble");
+            l.getStyleClass().add("chat-bubble");
         }
         else{
             l.getStyleClass().add("chat-bubble2");

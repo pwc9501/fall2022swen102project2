@@ -36,11 +36,12 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private TextField sender;
     private TextField text;
     private VBox v;
+    private VBox beginningBox;
     private Button b;
     private Stage popUpStage;
     private ComboBox<String> TextBubbleBox;
 
-    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage, ComboBox<String> TextBubbleBox)
+    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox)
     {
         this.time = time;
         this.sender = sender;
@@ -49,6 +50,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         this.b = b;
         this.popUpStage = popUpStage;
         this.TextBubbleBox = TextBubbleBox;
+        this.beginningBox = beginningBox;
     }
 
     private Label makeLabel(String text){
@@ -63,7 +65,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         if (TextBubbleBox.getValue() == null){
             l.getStyleClass().add("chat-bubble");
         }
-        else if(TextBubbleBox.getValue().equals("Sender Message")){
+        else if(TextBubbleBox.getValue().equals("Reciever Message")){
             l.getStyleClass().add("chat-bubble");
         }
         else{
@@ -80,12 +82,10 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
      */
 
     public void text(){
-        Label l = makeLabel(text.getText());
-        if(!sender.getText().isEmpty()){
-            l.setText(text.getText());
+        if(!text.getText().isEmpty()){
+            Label l = makeLabel(text.getText());
+            v.getChildren().add(l);
         }
-        v.getChildren().add(l);
-        
     }
 
      @Override
@@ -113,7 +113,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         }
       
         if(!sender.getText().isEmpty()){
-            ((Label) v.getChildren().get(0)).setText(sender.getText());
+            ((Label) beginningBox.getChildren().get(1)).setText(sender.getText());
             sender.setEditable(false);
             b.setDisable(true);
         }
