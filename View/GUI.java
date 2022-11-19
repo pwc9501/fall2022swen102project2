@@ -111,6 +111,7 @@ public class GUI extends Application{
             BorderPane borderPane = new BorderPane();
             borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
+            //title and sender label
             VBox beginningBox = new VBox();
             beginningBox.setAlignment(Pos.CENTER);
 
@@ -132,10 +133,11 @@ public class GUI extends Application{
 
             beginningBox.getChildren().add(nameLabel);
 
-
             borderPane.setTop(beginningBox);
+            //end of title and sender label
             
-         
+
+            //typing animation for title
             Animation typingAnimation = new Transition(){
                 {
                     setCycleDuration(Duration.millis(2000));
@@ -151,7 +153,7 @@ public class GUI extends Application{
             typingAnimation.play();
 
             
-            
+            //scrollpane
             ScrollPane scroll = new ScrollPane();
             VBox text = new VBox();
             scroll.setPrefHeight (200) ;
@@ -161,10 +163,10 @@ public class GUI extends Application{
             scroll.setContent(text);
             scroll.setStyle("-fx-background: #000000; -fx-border-color: #000000");
             borderPane.setCenter(scroll);
-            
+            //end of scrollpane
 
 
-            
+            //userControls
             HBox userControls = new HBox();
             userControls.setPadding(new Insets(10));
             userControls.setAlignment(Pos.CENTER);
@@ -180,6 +182,10 @@ public class GUI extends Application{
             
             Stage popUpStage = new Stage();
             popUp.setOnAction(new OpenUserInput(popUpStage));
+
+            borderPane.setBottom(userControls);
+
+            //end of userControls
 
             //popUpStage
 
@@ -224,7 +230,9 @@ public class GUI extends Application{
             sendNow.setOnAction(updateObserver);
             
             EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
-            userSend.setOnAction(sendObserver) ;
+            userSend.setOnAction(sendObserver);
+
+            //end of PopUpStage
 
             //schedule popUp 
             Stage scheduleStage = new Stage();
@@ -244,10 +252,8 @@ public class GUI extends Application{
             
             EventHandler<ActionEvent> scheduleTextObserver = new ScheduleText(hbox, timeSchedule, popUpStage, scheduleStage);
             scheduleButton.setOnAction(scheduleTextObserver);
-            
+            //end of schedule popUp
 
-            borderPane.setBottom(userControls);
-            //borderPane.setMargin(userControls, new Insets(0, 50, 0, 50));
 
             Scene scene = new Scene(borderPane, 400, Double.MAX_VALUE);
             scene.getStylesheets().add("design.css");
