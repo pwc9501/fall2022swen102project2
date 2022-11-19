@@ -63,7 +63,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         if (TextBubbleBox.getValue() == null){
             l.getStyleClass().add("chat-bubble");
         }
-        else if(TextBubbleBox.getValue().equals("Reciever Message")){
+        else if(TextBubbleBox.getValue().equals("Sender Message")){
             l.getStyleClass().add("chat-bubble");
         }
         else{
