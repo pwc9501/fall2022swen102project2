@@ -3,8 +3,8 @@ package View;
 import Controller.OpenUserInput;
 import Controller.ScheduleText;
 import Controller.popUpTextHandler;
-import Random.randomName;
-import Random.randomText;
+import Controller.randomNameField;
+import Controller.randomTextField;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.application.Application;
@@ -183,14 +183,15 @@ public class GUI extends Application{
             Button popUp =  makeButton("?");
             userControls.getChildren().add(popUp);
             
-            Stage popUpStage = new Stage();
-            popUp.setOnAction(new OpenUserInput(popUpStage));
 
             borderPane.setBottom(userControls);
 
             //end of userControls
 
             //popUpStage
+
+            Stage popUpStage = new Stage();
+            popUp.setOnAction(new OpenUserInput(popUpStage));
 
             GridPane popUpPane = new GridPane();
             popUpPane.setPadding(new Insets(10));
@@ -267,35 +268,5 @@ public class GUI extends Application{
     }
     public static void main(String[] args) {
         launch(args);
-    }
-}
-
-class randomNameField implements EventHandler<ActionEvent>{
-    private TextField text;
-    private randomName name;
-
-    public randomNameField(TextField text){
-        this.text = text;
-        this.name = new randomName();
-    }
-
-    @Override
-    public void handle(ActionEvent arg0){
-        text.setText(name.randomTString());
-    }
-}
-
-class randomTextField implements EventHandler<ActionEvent>{
-    private TextField text;
-    private randomText r;
-
-    public randomTextField(TextField text){
-        this.text = text;
-        this.r = new randomText();
-    }
-
-    @Override
-    public void handle(ActionEvent arg0) {
-        text.setText(r.randomTString());
     }
 }
