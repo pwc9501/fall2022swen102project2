@@ -57,10 +57,10 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         Label l = new Label(text);
         int maxlength = 200;
         if(text.length() > maxlength){
-            l.setMinHeight(text.length() * .75);
+            l.setMinHeight(text.length() * .6);
         }
         else{
-            l.setMinHeight(175);
+            l.setMinHeight(50);
         }
         if (TextBubbleBox.getValue() == null){
             l.getStyleClass().add("chat-bubble");
