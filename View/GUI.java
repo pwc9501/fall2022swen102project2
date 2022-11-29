@@ -177,6 +177,9 @@ public class GUI extends Application{
             Button userSend =  makeButton("Send Text");
             userControls.getChildren().add(userSend);
 
+            userTextField.setEditable(false);
+            userSend.setDisable(true);
+
             Button popUp =  makeButton("?");
             userControls.getChildren().add(popUp);
             
@@ -297,12 +300,12 @@ class SendMessageHandler implements EventHandler<ActionEvent>{
 
     private Label makeLabel(String text){
         Label l = new Label(text);
-        int maxlength = 200;
+        int maxlength = 50;
         if(text.length() > maxlength){
-            l.setMinHeight(text.length() * .75);
+            l.setMinHeight(text.length() * .55);
         }
         else{
-            l.setMinHeight(175);
+            l.setMinHeight(50);
         }
         if(i % 2 == 0){
             l.getStyleClass().add("chat-bubble");
@@ -333,7 +336,6 @@ class randomTextField implements EventHandler<ActionEvent>{
 
     @Override
     public void handle(ActionEvent arg0) {
-        // TODO Auto-generated method stub
         text.setText(r.randomTString());
     }
 }
