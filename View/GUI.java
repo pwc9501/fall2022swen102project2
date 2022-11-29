@@ -232,8 +232,6 @@ public class GUI extends Application{
             EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox);
             sendNow.setOnAction(updateObserver);
             
-            EventHandler<ActionEvent> sendObserver = new SendMessageHandler(text, userTextField, scroll);
-            userSend.setOnAction(sendObserver);
 
             //end of PopUpStage
 
@@ -258,9 +256,10 @@ public class GUI extends Application{
             //end of schedule popUp
 
 
-            Scene scene = new Scene(borderPane, 400, Double.MAX_VALUE);
+            Scene scene = new Scene(borderPane, 600, Double.MAX_VALUE);
             scene.getStylesheets().add("design.css");
             stage.setScene(scene);
+            stage.setResizable(false);
             popUpStage.setScene(new Scene(popUpPane));
             scheduleStage.setScene(new Scene(schedulePane));
             stage.setTitle("Fake Text App");
@@ -285,46 +284,7 @@ class randomNameField implements EventHandler<ActionEvent>{
         text.setText(name.randomTString());
     }
 }
-class SendMessageHandler implements EventHandler<ActionEvent>{
-    private VBox v;
-    private TextField text;
-    private ScrollPane scroll;
-    private int i;
 
-    public SendMessageHandler (VBox v, TextField text, ScrollPane scroll) {
-        this.v=v;
-        this.text=text;
-        this.scroll=scroll;
-        this.i = 0;
-    }
-
-    private Label makeLabel(String text){
-        Label l = new Label(text);
-        int maxlength = 50;
-        if(text.length() > maxlength){
-            l.setMinHeight(text.length() * .55);
-        }
-        else{
-            l.setMinHeight(50);
-        }
-        if(i % 2 == 0){
-            l.getStyleClass().add("chat-bubble");
-        }
-        else{
-            l.getStyleClass().add("chat-bubble2");
-        }
-        i++;
-        l.setMaxSize(200, Double.MAX_VALUE);
-        l.setAlignment(Pos.CENTER);
-        return l;
-    }
-
-    public void handle (ActionEvent arg0) {
-        Label l = makeLabel(text.getText());
-        v.getChildren().add(l);
-        v.heightProperty().addListener(observable -> scroll.setVvalue(1D));
-    }
-}
 class randomTextField implements EventHandler<ActionEvent>{
     private TextField text;
     private randomText r;
