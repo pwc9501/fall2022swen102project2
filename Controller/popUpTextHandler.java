@@ -76,6 +76,8 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
             Label l = makeLabel(text.getText());
             v.getChildren().add(l);
             mediaPlayer.play();
+            text.setText("");
+            TextBubbleBox.getSelectionModel().selectFirst();
         }
     }
 

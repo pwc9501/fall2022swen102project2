@@ -55,6 +55,7 @@ public class GUI extends Application{
         ComboBox<String> TextBubbleType = new ComboBox<>();
         TextBubbleType.getItems().add("Sender Message");
         TextBubbleType.getItems().add("Reciever Message");
+        TextBubbleType.getSelectionModel().selectFirst();
         TextBubbleType.setMaxWidth(Double.MAX_VALUE);
         return TextBubbleType;
     }
@@ -206,10 +207,15 @@ public class GUI extends Application{
             TextField timeSchedule =  makeTextField("schedule the time");
             Button schedule = makeButton("Schedule");
 
+            Text speechBubbleSubTitle = new Text();
+            speechBubbleSubTitle.setFont(Font.font("Impact", FontWeight.BOLD, 15));
+            speechBubbleSubTitle.setFill(Color.WHITE);
+            speechBubbleSubTitle.setText("Choose Speech Bubble");
             ComboBox<String> TextBubbleComboBox = addTextBubbleType();
 
             Button sendNow =  makeButton("Send");
 
+            sendNow.disableProperty().bind(popUpTextField.textProperty().isEmpty());
 
             popUpPane.add(popUpTextField, 0, 1);
             popUpPane.add(randomText, 1, 1);
@@ -217,12 +223,15 @@ public class GUI extends Application{
             popUpPane.add(popUpSenderField, 0, 0);
             popUpPane.add(randomSender, 1, 0);
 
-            popUpPane.add(timeSchedule, 0, 2);
-            popUpPane.add(schedule, 1, 2);
+            popUpPane.add(timeSchedule, 0, 4);
+            popUpPane.add(schedule, 1, 4);
 
+            popUpPane.add(speechBubbleSubTitle, 0, 2);
             popUpPane.add(TextBubbleComboBox, 0, 3, 2, 1);
 
-            popUpPane.add(sendNow, 0, 4);
+            popUpPane.add(sendNow, 0, 5, 2, 1);
+
+            popUpPane.setVgap(10);
             
             EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
@@ -262,8 +271,10 @@ public class GUI extends Application{
             stage.setScene(scene);
             stage.setResizable(false);
             popUpStage.setScene(new Scene(popUpPane));
+            popUpStage.setTitle("Sub Menu");
             scheduleStage.setScene(new Scene(schedulePane));
-            stage.setTitle("Fake Text App");
+            scheduleStage.setTitle("Scheduler Menu");
+            stage.setTitle("Ritchie's Texts App");
             stage.show();
     }
     public static void main(String[] args) {
