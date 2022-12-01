@@ -252,13 +252,20 @@ public class GUI extends Application{
             BorderPane schedulePane = new BorderPane();
             schedulePane.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(0), Insets.EMPTY)));
             HBox hbox = new HBox();
-    
-            hbox.getChildren().add(addHoursDropDown());
+            
+            ComboBox<Integer> hours = addHoursDropDown();
+            ComboBox<Integer> minutes = addMinutesDropDown();
+            ComboBox<String> meridiem = addAmPmDropDown();
+            hbox.getChildren().add(hours);
             hbox.getChildren().add(addColon());
-            hbox.getChildren().add(addMinutesDropDown());
-            hbox.getChildren().add(addAmPmDropDown());
+            hbox.getChildren().add(minutes);
+            hbox.getChildren().add(meridiem);
+
             schedulePane.setCenter(hbox);
             Button scheduleButton = makeButton("Confirm");
+
+            scheduleButton.disableProperty().bind(hours.valueProperty().isNull().or(minutes.valueProperty().isNull()).or(meridiem.valueProperty().isNull()));
+
             schedulePane.setBottom(scheduleButton);
             
             EventHandler<ActionEvent> scheduleTextObserver = new ScheduleText(hbox, timeSchedule, popUpStage, scheduleStage);

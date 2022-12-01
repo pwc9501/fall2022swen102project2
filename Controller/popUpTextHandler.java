@@ -104,6 +104,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
             sender.setEditable(false);
             b.setDisable(true);
         }
+        time.setText("");
         popUpStage.close();
      }
 }

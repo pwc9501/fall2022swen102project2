@@ -60,6 +60,9 @@ public class ScheduleText implements EventHandler<ActionEvent> {
         sb.append("00");
         String s = sb.toString();
         textField.setText(s);
+        H.setValue(null);
+        M.setValue(null);
+        str.setValue(null);
         scheduleStage.close();
        
     }
