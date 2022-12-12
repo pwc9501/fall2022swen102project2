@@ -33,8 +33,21 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * The GUI file implements the user interfaces of our fake texting app. This
+ * file specifically implements the main user interface, the sub menu, and the scheduler menu.
+ * 
+ * @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
+ * 
+ */
+
 public class GUI extends Application{
     
+    /**
+     * makes and returns a button for the user interface
+     * 
+     * @param text - text for the button to display on the user interface
+    */
     private Button makeButton(String text){
         Button b = new Button(text);
         b.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -44,6 +57,11 @@ public class GUI extends Application{
         return b;
     }
 
+    /**
+     * makes and returns a Text Field for the user interface
+     * 
+     * @param text - text for the text field to display on the user interface
+    */
     private TextField makeTextField(String text){
         TextField t = new TextField();
         t.setPromptText(text);
@@ -51,6 +69,11 @@ public class GUI extends Application{
         return t;
     }
 
+    /**
+     * makes and returns a ComboBox that determines what speech bubble the user wants
+     * to use when sending the text
+     *
+    */
     private ComboBox<String> addTextBubbleType(){
         ComboBox<String> TextBubbleType = new ComboBox<>();
         TextBubbleType.getItems().add("Sender Message");
@@ -239,7 +262,7 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox);
+            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox, popUp);
             sendNow.setOnAction(updateObserver);
             
 

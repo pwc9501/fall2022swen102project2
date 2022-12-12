@@ -8,6 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * This event Handler helps convert the time from standard to military time. This is used to
+ * help figure out what time exactly the user wants to schedule a text.
+ * 
+ * @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
+ */
+
 public class ScheduleText implements EventHandler<ActionEvent> {
     private ComboBox<Integer> H;
     private ComboBox<Integer> M;

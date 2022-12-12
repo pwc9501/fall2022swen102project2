@@ -17,7 +17,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+/**
+ * This event Handler helps with displaying the text and name on the user interface based on user input.
+ * This event Handler also helps with displaying the text at certain time frame.
+ * 
+ * @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
+ */
 public class popUpTextHandler implements EventHandler<ActionEvent>{
     private TextField time;
     private TextField sender;
@@ -25,16 +30,18 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private VBox v;
     private VBox beginningBox;
     private Button b;
+    private Button popUp;
     private Stage popUpStage;
     private ComboBox<String> TextBubbleBox;
 
-    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox)
+    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox, Button popUp)
     {
         this.time = time;
         this.sender = sender;
         this.text = text;
         this.v = v;
         this.b = b;
+        this.popUp = popUp;
         this.popUpStage = popUpStage;
         this.TextBubbleBox = TextBubbleBox;
         this.beginningBox = beginningBox;
@@ -83,8 +90,8 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
 
      @Override
      public void handle(ActionEvent arg0) {
-         // TODO Auto-generated method stub
          if(!time.getText().isEmpty()){
+            popUp.setDisable(true);
             LocalTime localTime = LocalTime.now();
             String[] dataAndTimeString = time.getText().split(" ");
             String[] timeString = dataAndTimeString[1].split(":");
@@ -92,6 +99,7 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
             + (Double.parseDouble(timeString[2]) - localTime.getSecond()) / 60);
             Timeline timeline = new Timeline(new KeyFrame(Duration.minutes(duration), ev -> {
                 text();
+                popUp.setDisable(false);
             }));
             timeline.play();
         }
