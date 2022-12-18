@@ -1,6 +1,6 @@
 package Controller;
 
-import Random.randomText;
+import Random.RandomTxtSelector;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -12,11 +12,12 @@ import javafx.scene.control.TextField;
  */
 public class randomTextField implements EventHandler<ActionEvent>{
     private TextField text;
-    private randomText randomMessage;
+    private RandomTxtSelector randomMessage;
+    private final String FILE_NAME = "preset_text.txt";
 
     public randomTextField(TextField text){
         this.text = text;
-        this.randomMessage = new randomText();
+        this.randomMessage = new RandomTxtSelector(FILE_NAME);
     }
 
     @Override

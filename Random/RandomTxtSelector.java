@@ -9,19 +9,19 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 /**
- * This file picks a random name from the preset_name.txt file. This is used for when the user
- * doesn't know what to put in the "name" Text Field in the GUI sub menu.
+ * This file picks a random string of text from the a given file. This is used for when the user
+ * doesn't know what to put in the "text" or "name" Text Field in the GUI sub menu.
  * 
  * @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
  */
-
-public class randomName {
+public class RandomTxtSelector {
+    private String fileName;
     private File file; 
     private BufferedReader br; 
     private Random random;
 
-    public randomName(){
-        this.file = new File("preset_name.txt");
+    public RandomTxtSelector(String filename){
+        file = new File(filename);
         this.br = null;
         this.random = new Random();
     }
@@ -51,3 +51,4 @@ public class randomName {
         return "";
     }
 }
+
