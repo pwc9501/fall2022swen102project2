@@ -2,9 +2,9 @@ package View;
 
 import Controller.OpenUserInput;
 import Controller.ScheduleText;
-import Controller.popUpTextHandler;
-import Controller.randomNameField;
-import Controller.randomTextField;
+import Controller.PopUpTextHandler;
+import Controller.RandomNameField;
+import Controller.RandomTextField;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.application.Application;
@@ -256,13 +256,13 @@ public class GUI extends Application{
 
             popUpPane.setVgap(10);
             
-            EventHandler<ActionEvent> randomTextObserver = new randomTextField(popUpTextField);
+            EventHandler<ActionEvent> randomTextObserver = new RandomTextField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
 
-            EventHandler<ActionEvent> randomNameObserver = new randomNameField(popUpSenderField);
+            EventHandler<ActionEvent> randomNameObserver = new RandomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new popUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox, popUp);
+            EventHandler<ActionEvent> updateObserver = new PopUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox, popUp);
             sendNow.setOnAction(updateObserver);
             
 
