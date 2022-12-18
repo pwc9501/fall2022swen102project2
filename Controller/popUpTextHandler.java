@@ -75,8 +75,14 @@ public class PopUpTextHandler implements EventHandler<ActionEvent>{
      * Executes code at specified time
      */
     public void text(){
-        String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
-        Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
+        String messageAudio;    
+        if (TextBubbleBox.getValue().equals("Reciever Message")) {
+            messageAudio = "Audio/MessageRecieved.mp3";    
+        }
+        else {
+            messageAudio = "Audio/MessageSent.mp3";
+        }
+        Media sound = new Media(new File(messageAudio).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         if(!text.getText().isEmpty()){
             Label lblMessage = makeLabel(text.getText());
