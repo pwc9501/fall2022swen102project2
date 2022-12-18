@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
  * 
  *  @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
  */
-
 public class randomNameField implements EventHandler<ActionEvent>{
     private TextField text;
     private randomName name;

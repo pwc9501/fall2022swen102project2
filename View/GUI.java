@@ -44,7 +44,7 @@ import javafx.util.Duration;
 public class GUI extends Application{
     
     /**
-     * makes and returns a button for the user interface
+     * Factory Method: makes and returns a button for the user interface
      * 
      * @param text - text for the button to display on the user interface
     */
@@ -58,7 +58,7 @@ public class GUI extends Application{
     }
 
     /**
-     * makes and returns a Text Field for the user interface
+     * Factory Method: makes and returns a Text Field for the user interface
      * 
      * @param text - text for the text field to display on the user interface
     */
@@ -307,6 +307,7 @@ public class GUI extends Application{
             stage.setTitle("Ritchie's Texts App");
             stage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -16,29 +16,24 @@ import javafx.stage.Stage;
  */
 
 public class ScheduleText implements EventHandler<ActionEvent> {
-    private ComboBox<Integer> H;
-    private ComboBox<Integer> M;
+    private ComboBox<Integer> cboxHour;
+    private ComboBox<Integer> cboxMinute;
     private ComboBox<String> str;
-    private HBox hbox;
     private TextField textField;
-    private Stage popStage;
     private Stage scheduleStage;
     public ScheduleText(HBox hbox, TextField textField, Stage popUpStage, Stage scheduleStage)
     {
-        this.hbox = hbox;
         this.textField = textField;
-        this.popStage = popUpStage;
         this.scheduleStage = scheduleStage;
-        
-        this.H = (ComboBox<Integer>) hbox.getChildren().get(0);
-        this.M = (ComboBox<Integer>) hbox.getChildren().get(2);
+        this.cboxHour = (ComboBox<Integer>) hbox.getChildren().get(0);
+        this.cboxMinute = (ComboBox<Integer>) hbox.getChildren().get(2);
         this.str = (ComboBox<String>) hbox.getChildren().get(3);
     }
 
     @Override
     public void handle(ActionEvent arg0) {
-        int hour = H.getValue();
-        int minute = M.getValue();
+        int hour = cboxHour.getValue();
+        int minute = cboxMinute.getValue();
         String timezone = str.getValue();
         if (timezone.equals("PM") && (hour >= 1 && hour <= 11))
         {
@@ -67,11 +62,9 @@ public class ScheduleText implements EventHandler<ActionEvent> {
         sb.append("00");
         String s = sb.toString();
         textField.setText(s);
-        H.setValue(null);
-        M.setValue(null);
+        cboxHour.setValue(null);
+        cboxMinute.setValue(null);
         str.setValue(null);
         scheduleStage.close();
-       
     }
-    
 }

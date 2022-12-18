@@ -27,20 +27,20 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     private TextField time;
     private TextField sender;
     private TextField text;
-    private VBox v;
+    private VBox vMessageList;
     private VBox beginningBox;
-    private Button b;
+    private Button btnRandomSender;
     private Button popUp;
     private Stage popUpStage;
     private ComboBox<String> TextBubbleBox;
 
-    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox v, Button b, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox, Button popUp)
+    public popUpTextHandler(TextField time, TextField sender, TextField text, VBox vMessageList, Button btnRandomSender, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox, Button popUp)
     {
         this.time = time;
         this.sender = sender;
         this.text = text;
-        this.v = v;
-        this.b = b;
+        this.vMessageList = vMessageList;
+        this.btnRandomSender = btnRandomSender;
         this.popUp = popUp;
         this.popUpStage = popUpStage;
         this.TextBubbleBox = TextBubbleBox;
@@ -48,40 +48,39 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
     }
 
     private Label makeLabel(String text){
-        Label l = new Label(text);
+        Label lblMessage = new Label(text);
         int maxlength = 200;
         if(text.length() > maxlength){
-            l.setMinHeight(text.length() * .6);
+            lblMessage.setMinHeight(text.length() * .6);
         }
         else{
-            l.setMinHeight(50);
+            lblMessage.setMinHeight(50);
         }
         if (TextBubbleBox.getValue() == null){
-            l.getStyleClass().add("chat-bubble");
+            lblMessage.getStyleClass().add("chat-bubble");
         }
         else if(TextBubbleBox.getValue().equals("Reciever Message")){
-            l.getStyleClass().add("chat-bubble");
+            lblMessage.getStyleClass().add("chat-bubble");
         }
         else{
-            l.getStyleClass().add("chat-bubble2");
+            lblMessage.getStyleClass().add("chat-bubble2");
         }
-        l.setMaxSize(200, Double.MAX_VALUE);
-        l.setAlignment(Pos.CENTER);
-        return l;
+        lblMessage.setMaxSize(200, Double.MAX_VALUE);
+        lblMessage.setAlignment(Pos.CENTER);
+        return lblMessage;
     }
 
     
     /**
      * Executes code at specified time
      */
-
     public void text(){
         String messageRecievedAudio = "Audio/MessageRecieved.mp3";    
         Media sound = new Media(new File(messageRecievedAudio).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         if(!text.getText().isEmpty()){
-            Label l = makeLabel(text.getText());
-            v.getChildren().add(l);
+            Label lblMessage = makeLabel(text.getText());
+            vMessageList.getChildren().add(lblMessage);
             mediaPlayer.play();
             text.setText("");
             TextBubbleBox.getSelectionModel().selectFirst();
@@ -106,11 +105,10 @@ public class popUpTextHandler implements EventHandler<ActionEvent>{
         else{
             text();
         }
-      
         if(!sender.getText().isEmpty()){
             ((Label) beginningBox.getChildren().get(1)).setText(sender.getText());
             sender.setEditable(false);
-            b.setDisable(true);
+            btnRandomSender.setDisable(true);
         }
         time.setText("");
         popUpStage.close();

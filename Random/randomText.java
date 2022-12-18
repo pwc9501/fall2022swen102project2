@@ -41,7 +41,6 @@ public class randomText{
         
     }
     
-    
     public String randomTString(){
         try{
             int randInt = random.nextInt(totallines());
@@ -51,11 +50,4 @@ public class randomText{
         }
         return "";
     }
-
-    public static void main(String[] args)
-    {
-        randomText rd = new randomText();
-        System.out.println(rd.randomTString());
-    }
-
 }
