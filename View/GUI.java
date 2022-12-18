@@ -4,7 +4,7 @@ import Controller.OpenUserInput;
 import Controller.ScheduleText;
 import Controller.PopUpTextHandler;
 import Controller.RandomNameField;
-import Controller.RandomTextField;
+import Controller.RandomMessageField;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.application.Application;
@@ -105,7 +105,6 @@ public class GUI extends Application{
         return lblColon;
     }
 
-
     /**
      * Adds integers (corresponding to minutes) as items in the combo box
      */
@@ -122,7 +121,6 @@ public class GUI extends Application{
         return cboxMinutes;
     }
 
-
     /**
      * Adds Combobox with AM/PM items
      */
@@ -131,8 +129,6 @@ public class GUI extends Application{
         cboxAmPm.getItems().addAll("AM", "PM");
         return cboxAmPm;
     }
-
-
     
     @Override
     public void start(Stage stage){
@@ -200,7 +196,7 @@ public class GUI extends Application{
             userControls.setPadding(new Insets(10));
             userControls.setAlignment(Pos.CENTER);
             
-            TextField userTextField = makeTextField("Enter text");
+            TextField userTextField = makeTextField("Enter Message");
             userControls.getChildren().add(userTextField);
             
             Button userSend =  makeButton("Send Text");
@@ -226,13 +222,13 @@ public class GUI extends Application{
             popUpPane.setPadding(new Insets(10));
             popUpPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
             
-            TextField popUpTextField =  makeTextField("Enter text");
-            Button randomText =  makeButton("Random Text");
+            TextField popUpTextField =  makeTextField("Enter Message");
+            Button randomText =  makeButton("Random Message");
 
             TextField popUpSenderField =  makeTextField("Enter Name");
             Button randomSender =  makeButton("Random Name");
 
-            TextField timeSchedule =  makeTextField("schedule the time");
+            TextField timeSchedule =  makeTextField("Schedule Delivery");
             Button schedule = makeButton("Schedule");
 
             Text speechBubbleSubTitle = new Text();
@@ -261,7 +257,7 @@ public class GUI extends Application{
 
             popUpPane.setVgap(10);
             
-            EventHandler<ActionEvent> randomTextObserver = new RandomTextField(popUpTextField);
+            EventHandler<ActionEvent> randomTextObserver = new RandomMessageField(popUpTextField);
             randomText.setOnAction(randomTextObserver);
 
             EventHandler<ActionEvent> randomNameObserver = new RandomNameField(popUpSenderField);

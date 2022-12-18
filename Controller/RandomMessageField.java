@@ -10,12 +10,12 @@ import javafx.scene.control.TextField;
  * 
  *  @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
  */
-public class RandomTextField implements EventHandler<ActionEvent>{
+public class RandomMessageField implements EventHandler<ActionEvent>{
     private TextField text;
     private RandomTxtSelector randomMessage;
-    private final String FILE_NAME = "preset_text.txt";
+    private final String FILE_NAME = "preset_message.txt";
 
-    public RandomTextField(TextField text){
+    public RandomMessageField(TextField text){
         this.text = text;
         this.randomMessage = new RandomTxtSelector(FILE_NAME);
     }
