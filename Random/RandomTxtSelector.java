@@ -15,7 +15,6 @@ import java.util.Random;
  * @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
  */
 public class RandomTxtSelector {
-    private String fileName;
     private File file; 
     private BufferedReader br; 
     private Random random;

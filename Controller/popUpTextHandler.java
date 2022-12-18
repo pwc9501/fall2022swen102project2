@@ -85,6 +85,7 @@ public class PopUpTextHandler implements EventHandler<ActionEvent>{
             text.setText("");
             TextBubbleBox.getSelectionModel().selectFirst();
         }
+        ((Label) beginningBox.getChildren().get(1)).setText(sender.getText());
     }
 
      @Override
@@ -106,7 +107,6 @@ public class PopUpTextHandler implements EventHandler<ActionEvent>{
             text();
         }
         if(!sender.getText().isEmpty()){
-            ((Label) beginningBox.getChildren().get(1)).setText(sender.getText());
             sender.setEditable(false);
             btnRandomSender.setDisable(true);
         }

@@ -152,7 +152,7 @@ public class GUI extends Application{
 
             beginningBox.getChildren().add(title);
 
-            Label nameLabel = new Label("Name");
+            Label nameLabel = new Label("");
             nameLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
             nameLabel.setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, null, null)));
             nameLabel.setTextFill(Color.WHITE);
