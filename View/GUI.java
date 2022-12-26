@@ -72,7 +72,6 @@ public class GUI extends Application{
     /**
      * makes and returns a ComboBox that determines what speech bubble the user wants
      * to use when sending the text
-     *
     */
     private ComboBox<String> addTextBubbleType(){
         ComboBox<String> TextBubbleType = new ComboBox<>();
@@ -132,7 +131,6 @@ public class GUI extends Application{
     
     @Override
     public void start(Stage stage){
-
             BorderPane borderPane = new BorderPane();
             borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
