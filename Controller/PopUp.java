@@ -23,7 +23,7 @@ import javafx.util.Duration;
  * 
  * @author Liang Chu, Noah Landis, Kevin Sakowicz, Yanzhen Luo, Patrick Collins
  */
-public class a implements EventHandler<ActionEvent>{
+public class PopUp implements EventHandler<ActionEvent>{
     private TextField time;
     private TextField sender;
     private TextField text;
@@ -34,7 +34,7 @@ public class a implements EventHandler<ActionEvent>{
     private Stage popUpStage;
     private ComboBox<String> TextBubbleBox;
 
-    public a(TextField time, TextField sender, TextField text, VBox vMessageList, Button btnRandomSender, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox, Button popUp)
+    public PopUp(TextField time, TextField sender, TextField text, VBox vMessageList, Button btnRandomSender, Stage popUpStage, ComboBox<String> TextBubbleBox, VBox beginningBox, Button popUp)
     {
         this.time = time;
         this.sender = sender;

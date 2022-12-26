@@ -2,7 +2,7 @@ package View;
 
 import Controller.OpenUserInput;
 import Controller.ScheduleText;
-import Controller.PopUpTextHandler;
+import Controller.PopUp;
 import Controller.RandomNameField;
 import Controller.RandomMessageField;
 import javafx.animation.Animation;
@@ -263,7 +263,7 @@ public class GUI extends Application{
             EventHandler<ActionEvent> randomNameObserver = new RandomNameField(popUpSenderField);
             randomSender.setOnAction(randomNameObserver);
 
-            EventHandler<ActionEvent> updateObserver = new PopUpTextHandler(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox, popUp);
+            EventHandler<ActionEvent> updateObserver = new PopUp(timeSchedule, popUpSenderField, popUpTextField, text, randomSender, popUpStage, TextBubbleComboBox, beginningBox, popUp);
             sendNow.setOnAction(updateObserver);
             
 
